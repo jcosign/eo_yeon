@@ -1,0 +1,21 @@
+////////////////////0710////////////////////////////
+https://nextitoc.github.io/
+교수님 자료 공유
+
+Spring Framework
+동영상 강의
+자바 웹을 다루는 기술
+열혈강의 자바 웹 개발 워크북
+T아카데미 Spring Framework Basic
+
+- 자바 웹을 다루는 기술 - 이병승 저	길벗	2019년 01월
+Servlet/JSP부터 Spring까지. 사용법을 익히기 위한 따라하기 실습.
+
+- 코드로 배우는 스프링 웹 프로젝트 - 구멍가게 코딩단 저	남가람북스	2018년 09월
+Spring 사용법을 익히기 위한 따라하기 실습.
+
+https://melonpeach.tistory.com/8?category=806570
+프로젝트 블로그
+
+https://www.egovframe.go.kr/EgovEduMovie.jsp?menu=4&submenu=3
+전자정부 표준프레임워크
