@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>2주차_0825</title>
+    <style>
+        .summary {
+            background: #ddd;
+            padding: 30px 20px;
+            height: 100px;
+        }
+
+        .summary-img {
+            float: left;
+            width: 30%;
+        }
+
+        .summary-con {
+            float: right;
+            width: 70%;
+        }
+
+        .cl {
+            clear: both
+        }
+
+        .icon1 {
+            background: url('images/bl.gif') 0 10px no-repeat;
+            padding-left: 30px;
+            font-size: 24px;
+            font-weight: 700;
+            color: blue;
+        }
+
+        .border-box {
+            border: 1px solid #ddd;
+        }
+
+        .icon-list li {
+            margin: 5px;
+            list-style: none;
+            background: url('images/bl2.gif') 0 10px no-repeat;
+            padding-left: 30px;
+        }
+
+        .chart {
+            width: 100%;
+            padding: 30px;
+        }
+
+        .chart th {
+            background: #ddd;
+            padding: 10px 30px;
+        }
+
+        .chart td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            border-left: 1px solid #333;
+        }
+
+        /* 양쪽정렬 text-align:justify; */
+        .chart td:first-child {
+            border-left: none
+        }
+
+        .b {
+            background: yellow;
+            margin: 50px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .b-img {
+            float: right;
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="summary">
+        <div class="summary-img">
+            <img src="http://www.kopo.ac.kr/images/logo_new/daejeon.png">
+        </div>
+        <div class="summary-con">
+            로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피,
+            레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때<br> 사용하는 표준 채우기 텍스트로, 최종 결과물에
+            들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다.<br>
+            이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는
+            무언가를 지칭하는 용어로도 사용된다.
+        </div>
+    </div>
+    <h3 class="icon1 cl">운영안내</h3>
+    <div class="border-box">
+        <ul class="icon-list">
+            <li>정연서쪽하늘</li>
+            <li>연서정리정돈</li>
+            <li>서정연날리기</li>
+        </ul>
+    </div>
+    <div>
+        <ul class="icon-list">
+            <li>정연서쪽하늘</li>
+            <li>연서정리정돈</li>
+            <li>서정연날리기</li>
+        </ul>
+    </div>
+
+    <h3 class="icon1">테이블</h3>
+    <table class="chart">
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <!--표를 만들 때 thead와 tbody로 구분짓고, 표의 제목은 th로 구분지어준다.-->
+        <tbody>
+            <tr>
+                <td rowspan="2">구분</td>
+                <td>제목</td>
+                <td colspan="2">내용</td>
+                <!-- <td>비고</td> colspan을 주어 오른쪽 칸과 합쳐진다. -->
+            </tr>
+            <tr>
+                <!-- <td>안녕하세요</td> -->
+                <td>감사해요</td>
+                <td>잘있어요</td>
+                <td>다시만나요</td>
+            </tr>
+            <tr>
+                <td>안녕하세요</td>
+                <td>헬로~~</td>
+                <td>하이~</td>
+                <td>안녕~~~</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="icon1">Page</h3>
+    <div class="b">
+        대통령의 국법상 행위는 문서로써 하며, 이 문서에는 국무총리와 관계 국무위원이 부서한다.
+        군사에 관한 것도 또한 같다.<br><b>예비비는 총액으로 국회의 의결을 얻어야 한다.</b>
+        예비비의 지출은 차기국회의 승인을 얻어야 한다.
+        <pre>국회는 의원의 자격을 심사하며, 의원을 징계할 수 있다.</pre>
+        모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다.
+        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는<br> 체포·구속·압수·수색 또는
+        심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는 처벌·보안처분 또는 강제노역을 받지 아니한다.<br>
+
+        <div class="b-img">
+            <!-- <img src="http://www.kopo.ac.kr/images/campus/daejeon/dormi01.jpg"> -->
+            <img src="images/l_bg.png">
+        </div>
+    </div>
+    <div><a href="http://www.kopo.ac.kr/" target="_blank">폴리텍대학 바로가기</a></div>
+
+</body>
+
+</html>
