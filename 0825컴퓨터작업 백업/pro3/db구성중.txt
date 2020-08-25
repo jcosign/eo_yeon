@@ -1,0 +1,89 @@
+--사이트 맵--
+교재 신청
+
+문제 은행
+
+게시판 (Q&A)
+
+찬반토론
+
+동영상 강의(링크)
+
+회원 관리 (가입, 탈퇴, 수정)
+
+회원 학습 관리 (학습 계획표, 강의 메모, 틀린 문제 복습, 나의 Q&A)
+.
+.
+.
+z
+
+--필요 테이블--
+회원 테이블( 아이디, 비밀번호, 이름, 이메일?)
+게시글 테이블(글 번호, 제목, 내용, 작성자, 날짜)
+리플 테이블(글 번호, 내용, 작성자, 날짜)
+.
+.
+.
+
+
+
+==== 삭제 내용 (아래)
+
+--회원정보(member)
+--회원 정보(member) 저장을 위한 테이블 생성
+--회원 아이디 mem_id  문자열(최대 : 50 바이트)
+--회원 비밀번호 mem_pw  문자열(최대 : 50 바이트)
+--회원 이름 mem_name  문자열(최대 : 50 바이트)
+--회원 이메일 mem_em  문자열(최대 : 50 바이트)
+CREATE TABLE member (
+mem_id VARCHAR2(50),
+mem_pw VARCHAR2(50),
+mem_name VARCHAR2(50),
+mem_em VARCHAR2(50),
+PRIMARY KEY (mem_id)
+);
+
+-- 고객센터(faqbbs)
+CREATE TABLE faq_bbs(
+faq_no NUMBER(10,0), --글 번호
+faq_title VARCHAR2(50), --글제목
+faq_content CLOB,  --글내용
+faq_writer VARCHAR2(50), --작성자(아이디)
+faq_reg_date DATE DEFAULT SYSDATE, --글등록일(작성일)
+PRIMARY KEY ( faq_no ),
+FOREIGN KEY ( faq_writer ) REFERENCES member (mem_id)
+);
+
+
+drop table member;
+
+drop table faqbbs;
+
+==== 삭제 내용 (위)
+
+
+--회원 테이블
+CREATE TABLE member (
+memid VARCHAR2(50), --회원 아이디
+mempw VARCHAR2(50), --회원 비밀번호
+memname VARCHAR2(50), --회원 이름
+memem VARCHAR2(50), --회원 이메일
+PRIMARY KEY (memid)
+);
+
+-- faq 게시판 테이블
+CREATE TABLE faqbbs(
+faqno NUMBER(10,0), --글 번호
+faqtitle VARCHAR2(50), --글제목
+faqcontent CLOB,  --글내용
+faqwriter VARCHAR2(50), --작성자(아이디)
+faqdate DATE DEFAULT SYSDATE, --글등록일(작성일)
+PRIMARY KEY (faqno),
+FOREIGN KEY (faqwriter) REFERENCES member (memid)
+);
+
+
+
+
+
+

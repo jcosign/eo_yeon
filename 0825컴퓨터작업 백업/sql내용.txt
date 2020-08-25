@@ -1,0 +1,430 @@
+pro3=====================
+
+--회원 테이블
+CREATE TABLE member (
+memid VARCHAR2(50), --회원 아이디
+mempw VARCHAR2(50), --회원 비밀번호
+memname VARCHAR2(50), --회원 이름
+memem VARCHAR2(50), --회원 이메일
+PRIMARY KEY (memid)
+);
+
+-- faq 게시판 테이블
+CREATE TABLE faqbbs(
+faqno NUMBER(10,0), --글 번호
+faqtitle VARCHAR2(50), --글제목
+faqcontent CLOB,  --글내용
+faqwriter VARCHAR2(50), --작성자(아이디)
+faqdate DATE DEFAULT SYSDATE, --글등록일(작성일)
+PRIMARY KEY (faqno),
+FOREIGN KEY (faqwriter) REFERENCES member (memid)
+);
+
+SELECT * FROM MEMBER;
+
+SELECT * FROM FAQBBS;
+
+
+sys3========================
+--8/24 13.P329--
+--4. DBA가 관리하는 테이블들(SYS 계정으로 들어가야 한다.)
+SELECT * FROM DBA_TABLES;
+
+--6. SYS접속, 사용자 명이 SCOTT에 대한 정보 확인
+SELECT * FROM DBA_USERS
+WHERE USERNAME = 'SCOTT';
+
+--7. SCOTT 계정, INDEX만들어진 열 확인
+SELECT * FROM USER_IND_COLUMNS;
+
+--13. SYS계정, SCOTT에게 VIEW 생성 권한 주기
+GRANT CREATE VIEW TO SCOTT;
+
+
+SCOTT3=========================
+-------- 8/19 11.트랜잭션 제어와 세션----------
+
+--1 dept 테이블 모든 내용 복사 dept_tcl 테이블 생성
+create table dept_tcl
+as select * from dept;
+
+-- 다른 테이블에서 가져온 내용 확인
+select * from dept_tcl;
+
+--2 50번 부서 DATABASE, SEOUL을 dept_tcl 테이블에 삽입
+insert into dept_tcl values(50, 'DATABASE', 'SEOUL');
+
+--3 40번 부서의 주소를 BUSAN으로 변경
+UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 40;
+
+--4 부서명이 RESEARCH 삭제
+DELETE FROM DEPT_TCL WHERE DNAME = 'RESEARCH';
+
+--4 후 확인
+SELECT * FROM DEPT_TCL;
+
+--5 
+ROLLBACK;
+
+--5(롤백) 완료 후 확인
+SELECT * FROM DEPT_TCL;
+
+--6 DEPT_TCL 테이블에 50, NETWORK, SEOUL 정보 삽입
+INSERT INTO DEPT_TCL VALUES(50, 'NETWORK', 'SEOUL');
+
+--7 20번 부서 위치: BUSAN으로 변경
+UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 20;
+
+--8 40번 부서 삭제
+DELETE FROM DEPT_TCL WHERE DEPTNO = 40;
+
+--9 내용 확인
+SELECT * FROM DEPT_TCL;
+
+--10 실행완료
+COMMIT;
+
+--11 내용 확인
+SELECT * FROM DEPT_TCL;
+
+----====오른쪽에 새 창 띄움
+
+-----1.
+SELECT * FROM DEPT_TCL;
+-- 임의로 아무 값 생성
+INSERT INTO DEPT_TCL VALUES(55, 'NETWORK', 'DEAJEON');
+SELECT * FROM DEPT_TCL;
+--커밋 후 오른쪽 창 보니 확인 가능(적용됨)
+COMMIT;
+
+DELETE FROM DEPT_TCL WHERE DEPTNO = 55;
+SELECT * FROM DEPT_TCL;
+
+--12 30번 부서 주소 SEOUL 로 변경
+UPDATE DEPT_TCL SET LOC = 'SEOUL' WHERE DEPTNO = 30;
+SELECT * FROM DEPT_TCL;
+
+--13 30번 부서 주소 SEOUL 로 변경
+UPDATE DEPT_TCL SET LOC = 'DEAJEON' WHERE DEPTNO = 30;
+SELECT * FROM DEPT_TCL;
+
+ROLLBACK;
+
+COMMIT;
+
+--테이블 지우기
+DELETE FROM DEPT_TCL;
+
+-----=====오른쪽에 새로 띄운 창 내용
+SELECT * FROM DEPT_TCL;
+
+UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 30;
+--왼쪽 창에서 값을 바꾼 상태에서 커밋없이 오른쪽 창에서 변경하면 락이 걸려 변경불가.
+
+COMMIT;
+-----=============================
+
+--P309 왼쪽 테이블
+create table DEPT_HW
+as select * from dept;
+
+SELECT * FROM DEPT_HW;
+
+UPDATE DEPT_HW SET DNAME='DATABASE', LOC ='SEOUL' WHERE DEPTNO = 30;
+
+ROLLBACK;
+
+SELECT * FROM DEPT_HW;
+
+-----
+
+--P309 오른쪽 테이블
+
+SELECT * FROM DEPT_HW;
+
+UPDATE DEPT_HW SET DNAME='DATABASE', LOC='SEOUL' WHERE DEPTNO=30;
+
+SELECT * FROM DEPT_HW;
+
+COMMIT;
+
+SELECT * FROM DEPT_HW;
+
+-----
+
+--=========12. 데이터 정의어 ============--
+
+--12 테이블 생성 이름: EMP_DDL
+--  EMPNO: 숫자 4자리    NUMBER(4)
+--  ENAME: 가변형문자 10
+--  JOB: 가변형문자 9
+--  MGR: 숫자4
+--  HIREDATE: 날짜
+--  SAL: 전체 7자리 소수이하 2자리    NUMBER(7,2)
+--  COMM: 전체 7자리 소수이하 2자리
+--  DEPTNO: 숫자 2자리
+
+CREATE TABLE EMP_DDL(
+ EMPNO NUMBER(4),
+ ENAME VARCHAR2(10),
+ JOB VARCHAR(9),
+ MGR NUMBER(4),
+ HIREDATE DATE,
+ SAL NUMBER(7,2),
+ COMM NUMBER(7,2),
+ DEPTNO NUMBER(2)
+ );
+ 
+--13 확인
+ DESC EMP_DDL;
+
+--14 DEPT 테이블과 동일한 DEPT_DDL 테이블 생성(내용 포함)
+CREATE TABLE DEPT_DDL AS SELECT * FROM DEPT;
+
+--15 확인
+DESC DEPT_DDL;
+
+SELECT * FROM DEPT_DDL;
+SELECT * FROM EMP_DDL;
+
+--16 EMP 테이블에서 30번 부서의 내용만 가져와서 EMP_DDL_30 테이블 생성
+CREATE TABLE EMP_DDL_30
+AS SELECT * FROM EMP WHERE DEPTNO=30;
+
+SELECT* FROM EMP_DDL_30;
+
+--17 EMP, DEPT 테이블 중 EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO,
+--DNAME,LOC속성만으로 EMPDEPT_DDL 테이블을 생성하되 값은 가져오지 말기
+CREATE TABLE EMPDEPT_DDL
+  AS SELECT E.EMPNO, E.ENAME, E.JOB, E.MGR, E.HIREDATE, E.SAL, E.COMM,
+    D.DEPTNO, D.DNAME, D.LOC
+FROM EMP E, DEPT D
+  WHERE 1 <> 1;     --특정 테이블과 열 구성이 같되 저장 데이터가 없는 빈 테이블 생성하려면 
+                    --항상 거짓이 되는 값만 적으면 된다. EX)1>10
+                    --조건절인 WHERE절을 적지 않으면 데이터 포함인 전체가 생성된다.
+  
+SELECT * FROM EMPDEPT_DDL;
+
+--18 EMP과 동일한 EMP_ALTER테이블 생성
+CREATE TABLE EMP_ALTER AS SELECT * FROM EMP;
+
+SELECT * FROM EMP_ALTER;
+
+--19 EMP_ALTER테이블의 HP라는 속성을 가변형 20자로 추가(ALTER TABLE__ADD 속성명 데이터타입;)
+ALTER TABLE EMP_ALTER ADD HP VARCHAR2(20);
+
+--확인
+SELECT * FROM EMP_ALTER;
+
+--20 EMP_ALTER 테이블의 HP속성을 TEL로 이름변경(ALTER TABLE __ RENAME __ TO __ )
+ALTER TABLE EMP_ALTER RENAME COLUMN HP TO TEL;
+
+DESC EMP_ALTER;
+
+--확인
+SELECT * FROM EMP_ALTER;
+
+--21 EMP_ALTER 테이블의 EMPNO속성의 타입을 숫자 5로 변경(ALTER TABLE __MODIFY 속성명 타입)
+ALTER TABLE EMP_ALTER MODIFY EMPNO NUMBER(5);
+
+DESC EMP_ALTER;
+
+--22 EMP_ALTER 테이블의 이름을 EMP_RENAME으로 이름 변경(RENAME 테이블명 TO 변경하고 싶은 이름;)
+RENAME EMP_ALTER TO EMP_RENAME;
+
+SELECT * FROM EMP_RENAME;
+
+--23 EMP_RENAME 테이블 내용 지우되 자동 COMMIT(TRUNCATE TABLE 테이블 이름;)
+TRUNCATE TABLE EMP_RENAME;
+
+DESC EMP_RENAME;
+
+--24 EMP_RENAME 테이블 삭제
+DROP TABLE EMP_RENAME;
+
+--확인
+DESC EMP_RENAME;
+
+----P324
+--Q1.
+CREATE TABLE EMP_HW(
+ EMPNO NUMBER(4),
+ ENAME VARCHAR2(10),
+ JOB VARCHAR(9),
+ MGR NUMBER(4),
+ HIREDATE DATE,
+ SAL NUMBER(7,2),
+ COMM NUMBER(7,2),
+ DEPTNO NUMBER(2)
+ );
+ 
+--Q2.
+ALTER TABLE EMP_HW ADD BIGO VARCHAR2(20);
+
+SELECT * FROM EMP_HW;
+
+--Q3.
+ALTER TABLE EMP_HW MODIFY BIGO VARCHAR2(30);
+
+SELECT * FROM EMP_HW;
+
+--Q4.
+ALTER TABLE EMP_HW RENAME COLUMN BIGO TO REMARK;
+
+SELECT * FROM EMP_HW;
+
+--Q5.
+INSERT INTO EMP_HW 
+SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, NULL 
+  FROM EMP; 
+  
+--Q5의 다른 방법
+INSERT INTO EMP_HW (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+SELECT * FROM EMP; 
+  
+SELECT * FROM EMP_HW;
+
+--Q6.
+DROP TABLE EMP_HW;
+
+----===== 8/24 13. 객체 종류 =====----
+--1.모든 테이블의 정보
+select * from USER_TABLES;
+--1-1. 계정이 갖고 있는 객체 정보 살펴보기
+SELECT TABLE_NAME FROM USER_TABLES;
+
+--2. SCOTT 계정에서 사용 가능한 데이터 사전 살펴보기
+SELECT * FROM DICT;
+--2-1. 위와 같은 내용
+SELECT * FROM DICTIONARY;
+
+--3. 내 계정으로 확인 가능한 테이블들 
+SELECT * FROM ALL_TABLES;
+
+--4. DBA가 관리하는 테이블들(SYS 계정으로 들어가야 한다.)
+--SELECT * FROM DBA_TABLES;
+
+--5. 내 계정의 인덱스들 확인
+SELECT * FROM USER_INDEXES;
+
+--6. SYS접속, 사용자 명이 SCOTT에 대한 정보 확인
+--SELECT * FROM DBA_USERS
+--WHERE USERNAME = 'SCOTT';
+
+--7. SCOTT 계정, INDEX만들어진 열 확인
+SELECT * FROM USER_IND_COLUMNS;
+
+--8.EMP테이블을 복사해서 EMP1 생성
+create table EMP1
+as select * from EMP;
+
+--9. SCOTT EMP테이블의 SAL 속성을 기준으로 인덱스 생성, 인덱스명: IDX_EMP_SAL
+CREATE INDEX INDEX_EMP1_SAL
+ON EMP1(SAL);
+
+--10. 
+SELECT * FROM EMP1;
+SELECT SAL FROM EMP1;
+
+--11. 만들어진 INDEX 확인
+SELECT * FROM USER_INDEXES;
+
+--12. 인덱스 삭제
+DROP INDEX INDEX_EMP1_SAL;
+
+--13. SYS계정, SCOTT에게 VIEW 생성 권한 주기
+--GRANT CREATE VIEW TO SCOTT;
+
+--14. SCOTT 계정, EMP테이블에서 사원번호, 이름, 직업, 부서번호 이용해서 부사번호가 20인 사람 => VW_EMP20으로 뷰 생성
+CREATE VIEW VW_EMP20
+AS(SELECT EMPNO, ENAME, JOB, DEPTNO 
+FROM EMP
+WHERE DEPTNO = 20);
+
+--15. 뷰 생성 확인
+SELECT * FROM VW_EMP20;
+SELECT * FROM USER_VIEWS;
+SELECT TEXT FROM USER_VIEWS;
+
+--16.
+SELECT VIEW_NAME, TEXT_LENGTH, TEXT
+FROM USER_VIEWS;
+
+--17. 뷰 삭제하기
+DROP VIEW VW_EMP20;
+
+--18.
+SELECT * FROM VW_EMP20;
+
+--19.ROWNUM
+SELECT ROWNUM, E.*
+FROM EMP E;
+
+--20. 봉급 역순으로 정렬해서 출력하는데, 줄번호와 함께 출력
+SELECT ROWNUM, E.*
+FROM EMP E
+ORDER BY SAL DESC;
+--21. 해결책. 기억하기알아두기
+SELECT ROWNUM, E.*
+FROM (SELECT * FROM EMP
+ORDER BY SAL DESC)E;
+
+--22. 부서번호 순, 같은 부서이면 이름순 정렬해서 번호 부여
+SELECT ROWNUM, E.*
+FROM (SELECT * FROM EMP
+ORDER BY DEPTNO,ENAME ASC)E;
+
+--23. 입사일 순 정렬, 번호 부여
+SELECT ROWNUM, E.*
+FROM (SELECT * FROM EMP
+ORDER BY HIREDATE ASC)E;
+
+--24. WITH 사용, 23번과 동일하게
+WITH E AS(SELECT * FROM EMP ORDER BY HIREDATE)
+SELECT ROWNUM, E.*
+FROM E;
+
+--25. 23번 응용예제, 최고 3위까지 출력
+SELECT ROWNUM, E.*
+FROM (SELECT * FROM EMP ORDER BY HIREDATE) E
+WHERE ROWNUM <=3;
+
+--26. DEPT 테이블을 구조만 복사해서 DEPT2생성
+create table DEPT2
+as select * from DEPT
+WHERE 1<>1;
+
+--27. SEQUENCE SEQ_DEPT2 생성,증가값:10, 초기값:10, 최대치:90, 최소치:0, 반복X, 캐쉬:2
+CREATE SEQUENCE SEQ_DEPT2 
+INCREMENT BY 10
+START WITH 10
+MAXVALUE 90
+MINVALUE 0
+NOCYCLE
+CACHE 2;
+
+--28. USRE_SEQUENCES테이블 내용 확인
+SELECT * FROM USER_SEQUENCES;
+
+--29 DEPT2테이블에 SEQ_DEPT2.NEXTVAL, 'DATABASE', 'SEOUL' 삽입하기
+SELECT * FROM DEPT2;
+
+INSERT INTO DEPT2 (DEPTNO, DNAME, LOC)
+VALUES(SEQ_DEPT2.NEXTVAL, 'DATABASE', 'SEOUL');
+--위 내용을 9번 실행
+
+--30. 현재 시퀀스 번호 SEQ_DEPT2.CURRVAL 확인
+SELECT SEQ_DEPT2.CURRVAL
+FROM DUAL;
+
+--31. 시퀀스 CYCLE로 변경
+ALTER SEQUENCE SEQ_DEPT2
+INCREMENT BY 3
+MAXVALUE 99
+CYCLE;
+
+--32 INSERT 문장을 3번 추가 후 SELECT * FROM DEPT2; 확인
+SELECT * FROM DEPT2;
+
+--33. 시퀀스 SEQ_DEPT2 삭제
+DROP SEQUENCE SEQ_DEPT2;
