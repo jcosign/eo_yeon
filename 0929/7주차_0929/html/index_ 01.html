@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>UNI WORLD</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<style>
+  /* '.'은 클래스 정의할 때, '#'은 아이디를 정의할 때 사용합니다. */
+body{
+  background:powderblue;
+} /*바디 바탕색*/
+#container{
+  width: 90%; 
+  margin: 0 auto; 
+  background: #fff;
+}    /*글 담긴 컨테이너 가운데 정렬*/
+#mainHeader{
+  height:100px; 
+  background:#061f1f;
+}   /*좌우는 %로 주어야 하지만(모니터 크기가 다양하기 때문), 상하는 px로 주어도 된다.*/
+#mainHeader h1 {
+  padding: 30px;
+}   /*mainHeader 안에 h1*/
+.header1{
+  font-size:48px; 
+  color:yellow;
+}   /*폰트는 px로도 쓰지만, 반응형 웹에서는 em을 쓴다. 1em=16px.    48px=3em*/
+/*#mainNav ul li{border:1px solid #999;}    여백 없이 4개의 칸으로 나뉘었다. 바깥여백은 margin, 안쪽여백은 padding*/
+#mainNav ul li{
+  /* border:1px solid #999;
+  margin:15px;  */
+  /* padding:15px;  */
+  text-align: center; 
+  /* border-radius: 5px; */
+/*border-radius를 주어 테두리를 둥글게 만들었다.*/
+}  
+#mainNav ul li a{
+  text-decoration: none;
+  font-weight: 700px;
+  float: left;
+}
+#content{
+  padding:15px;
+}
+#content h2{
+  font-size: 2em; 
+  line-height: 2em;
+}  /*line-height 줄 높이를 정하는 속성*/
+#content article p {
+  padding:30px 0; 
+  color: #999; 
+  text-align: justify;
+}    /*text-align 문단 정렬 방식. justify는 양쪽 정렬이다.*/
+#content article h3 {
+  font-size:  1.2em;
+}
+#sidebar img {
+  width: 100%;
+} 
+#footer {
+  padding: 30px 0;
+  background: #061f1f;
+  color: #fff;
+  text-align: center;
+}   /*검정 배경에 흰 글씨. 가운데 정렬에 여백*/
+#footer address{
+  font-style: normal;
+}   /*폰트 스타일*/
+@media all and (min-width:768px) {
+    #mainHeader{
+      width: 100%;
+      height: 250px;
+      background: url('images/bg.png')no-repeat center center;
+    }
+    #mainNav{
+      height: 80px;
+    }
+    #mainNav li {
+      float: left;
+      width: 25%;
+      height: 80px;
+      border-radius: 0px;
+      border: none;
+      text-align: center;
+      margin: 0px;
+      background-color: #071f1f;
+    }
+
+    #mainNav li a {
+    font-size: 1.1em;
+    /* line-height: 80px; */
+    font-weight: 500;
+    color: white;
+    margin: 30px;
+    }
+    
+    #sidebar img{
+      width: 33.33333%;
+    }
+  }
+
+  @media all and (min-width:960px) {
+    #container{
+      max-width: 1200px;
+    }
+    #mainHeader{
+      width: 100%;
+      background-size: cover;
+    }
+    #content{
+      width: 65%;
+      height: 500px;
+      float: left;
+      margin: 0px;
+      padding: 40px 15px 0px;
+    }
+    #sidebar{
+      float: right;
+      width: 25%;
+      height: 510px;
+      background-color:#ccc;
+      padding: 15px;
+    }
+    #sidebar img {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    #footer {
+      clear: both;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div id="container">
+  <header id="mainHeader">
+      <h1 class="header1">UNI WORLD</h1>
+  </header>  
+  <!-- 네비게이션 -->
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#">이용 안내</a></li>
+        <li><a href="#">객실 소개</a></li>
+        <li><a href="#">예약 방법</a></li>
+        <li><a href="#">예약 하기</a></li>
+      </ul>
+    </nav>  
+
+  <section id="content">
+    <h2>UNI WORLD 소개</h2>
+     <article>
+       <h3>Lorem Ipsum is simply dummy text</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br><br>
+	  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+	  </p>    
+  </article>
+  </section>
+
+  <aside id="sidebar">
+    <img src="images/1.jpg" alt=""><img src="images/2.jpg" alt=""><img src="images/3.jpg" alt="">   
+  </aside>    
+  <footer id="footer">
+    <address>
+    Copyright ⓒUNI. All rights reserved.
+    </address>
+  </footer>
+</div>
+</body>
+</html>

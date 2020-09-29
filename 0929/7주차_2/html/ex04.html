@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>반응형웹 기본 구성</title>
+  <link href="css/default.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&amp;subset=korean" rel="stylesheet">
+  <style>
+       body{background-color: gray; border: 1px;}
+   #wrap{width:80%; margin: 0 auto; background-color:#fff;}
+header{width: 100%; height: 100px; background-color: #000000;}
+header h1{color: #fff; font-size: 3em; padding: 8px;}
+#main-nav li{float: left; list-style: none; padding:10px 10px;}
+#main-nav li a{color: #fff; text-decoration: none;}
+#main-nav li a:hover{color: yellow;text-shadow: 5px 5px 5px #000000;}
+.visual{float: left; background: url('images/header.jpg') right; background-size: cover; width: 100%;};
+#intro{padding: 20px;}
+.content{margin: 40px 40px;}
+.page-title{font-size: 1.2em; line-height: 1em; padding: 15px;}
+.photo img{width: 100%; padding: 10px;}
+.text{font-size: 1.1em; line-height: 1.5em; padding-bottom: 10px;}
+#map{background-color:#dcdcdc;padding: 20px;}
+.content{margin: 40px 40px;}
+.page-title{font-size: 1.2em; line-height: 1em;padding: 15px;}
+.photo img{width: 100%; padding: 10px; padding: 15px;}
+.text{font-size: 1.1em; line-height: 1.5em; padding-bottom: 10px;}
+#choice{margin: 20px 20px;}
+.page-title{font-size: 1.2em; line-height: 1em; padding: 15px;}
+ol{padding: 15px;}
+footer{background-color: #061f1f; color: #fff;text-align: center; 
+	padding:10px; height: 50px; padding-top: 25px;}
+
+@media all and (min-width: 768px){
+	.visual{background: url('images/header.jpg') right; background-size: cover; width: 100%;};
+	.visual img{width: 50%; float: left;}
+	#intro{width: 50%; float: left;}
+	#intro .photo img {width: 0%;}
+	#map{width: 50%; float: left;box-sizing: border-box;}
+	#map .photo img {width:0%;}
+	#choice{width: 100%;}
+	#choice .text{width: 50%; float: right;}
+	#choice img{width: 30%; float: left;}	
+	footer{clear: both;}	
+}
+
+@media all and (min-width: 960px){
+	#wrap{max-width: 1200px; margin: 0 auto;}
+	.visual{background: url('images/header.jpg') right; background-size: cover; width: 100%;};
+	.visual img{width: 100%; float: left;}
+	#intro{width: 100%;}
+	#intro .photo img {width: 20%; float: left;}
+	#intro .text{float: right;}
+	#map{width: 100%;box-sizing: border-box;}
+	#map .photo img {width:20%; float: left;}
+	#map .text{float: right; padding-right: 150px;}
+	#choice{width: 100%;}
+	.page-title{font-size: 1.2em; line-height: 1em; padding: 15px;}
+	#choice .text{width: 50%; float: left;}
+	#choice img{width: 30%; float: right;}	
+	footer{clear: both;}	
+}
+  
+  </style>
+ </head>
+ <body>
+  <div id="wrap">
+	<header>
+		<h1>UNI CAFFE</h1>
+		<nav>
+			<ul id="main-nav">
+				<li><a href="#intro">카페 소개</a></li>
+				<li><a href="#map">오시는 길</a></li>
+				<li><a href="#choice">이 달의 추천</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="visual"><img src="images/tt.png" alt="CAFFEE"></div>
+
+	<section id="intro">
+		<div class="page-title">
+			<h2>카페 소개</h2>
+		</div>
+		<div class="content">
+			<div class="photo">
+				<img src="images/coffee.jpg" alt="">
+			</div>
+			<div class="text">
+				<p> 영업 시간 : 오전 9시 ~ 밤 10시 </p>
+				<p> 휴무 : 매주 수요일 (수요일이 공휴일일 경우 수요일 영업, 다음날 휴무)</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="map">
+            <div class="page-title">
+		        <h2>오시는 길</h2>
+            </div>
+            <div class="content">
+                <div class="photo">
+		            <img src="images/map.jpg" alt="사계 포구에서 서쪽 방향으로 000미터 진행">
+                </div>
+                <div class="text">
+		            <p>[34503] 대전광역시 동구 우암로 352-21</p>
+                    <p>한국폴리텍IV대학 대전 캠퍼스 근처</p>	
+                </div>
+		    </div>
+        </section>
+
+        <section id="choice">
+            <div class="page-title">
+		        <h2>이 달의 추천 </h2>
+            </div>
+            <div class="content">
+                <div class="photo">
+		            <img src="images/ice.jpg" alt="아이스 커피">
+                </div>
+                <div class="text">
+		            <h3>핸드드립 아이스커피</h3>
+		            <ol>
+			            <li>1인분 기준으로 서버에 각얼음 5조각(한조각의 20cc) 넣고 추출을 시작한다.</li>
+			            <li>평상시 보다 원두의 양은 2배 정도 (20g)와 추출액은 얼음 포함해서 200cc까지 내린다.</li>
+			            <li>아이스 잔에 얼음 6~7개 섞어서 시원하게 마신다</li>
+		            </ol>
+                </div>
+			</div>
+		</section>
+
+        <footer>
+		    <p>Copyright(c) 2020 UNI All rights reserved.</p>
+        </footer>
+  </div>
+ </body>
+</html>

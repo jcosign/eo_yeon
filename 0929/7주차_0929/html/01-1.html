@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>UNI WORLD</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<style>
+body{background-color: #6EE0FF;}
+#container{width: 90%; margin: 0 auto; background-color: #fff;}
+#mainHeader{width: 100%; background-color:#061f1f;height: 100px;}
+#mainHeader h1{padding: 30px}
+.header1{font-size: 3em; color: yellow;}
+#mainNav ul li {border: 1px solid #999; margin: 5px; text-align: center; border-radius: 5px; padding:15px; box-sizing: border-box;}
+#mainNav ul li a{text-decoration: none; color: #000; font-weight: 700; font-size: 1em;} 
+#content{padding: 15px;}
+#content h2{font-size: 2em; line-height: 2.2em;}
+#content article h3{font-size: 1.2em;}
+#content article p{text-align: justify; color:#999; padding: 30px 0;}
+#sidebar img{width: 100%;}
+#footer{background-color: #061f1f; color: #fff;text-align: center; padding: 30px 0;} 
+#footer address {font-style: normal;}
+
+@media all and (min-width: 768px){
+            #mainHeader{background: url('img/bg.png');height: 200px; background-repeat: no-repeat; width: 100%;}
+            #mainNav ul li {float: left;width: 25%; height: 80px; border-radius: 0px; border: none;text-align: center; 
+              margin: 0px;
+      background-color: #071f1f;}
+            #mainNav ul li a {color: #fff;text-align: center;font-size: 1.1em;font-weight: 500;margin: 10px;}
+            #sidebar img{width: 33.3%; float: left;} 
+        }
+        
+@media all and (min-width: 965px){
+            #container{max-width: 1200px;}
+            #content{float: left; width: 65%; box-sizing: border-box;}
+            #mainHeader{background: url('images/bg.png');height: 200px; background-repeat: no-repeat; background-size: cover;}
+            #mainNav ul{width: 100%; height: 50px;}
+            #mainNav ul li {float: left; border: 0px;}
+            #mainNav ul li a {color: #fff; width: 25%; padding: 30px;}
+            #sidebar{float: right;width: 25%;height: 510px;background-color:#ccc;padding: 15px;} 
+            #sidebar img {display: block;width: 100%;text-align: center;}
+            #footer {clear: both;}
+        }
+
+</style>
+</head>
+
+<body>
+<div id="container">
+  <header id="mainHeader">
+       <h1 class="header1">UNI WORLD</h1>
+  </header>  
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#">이용 안내</a></li>
+        <li><a href="#">객실 소개</a></li>
+        <li><a href="#">예약 방법</a></li>
+        <li><a href="#">예약 하기</a></li>
+      </ul>
+    </nav>  
+
+  <section id="content">
+    <h2>제주도 소개</h2>
+     <article>
+       <h3>Lorem Ipsum is simply dummy text</h3>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br><br>
+     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+     </p>    
+  </article>
+  </section>
+
+  <aside id="sidebar">
+    <img src="images/1.jpg" alt=""><img src="images/2.jpg" alt=""><img src="images/3.jpg" alt="">   
+  </aside>    
+  <footer id="footer">
+    <address>
+    Copyright ⓒUNI. All rights reserved.
+    </address>
+  </footer>
+</div>
+</body>
+</html>
